@@ -34,9 +34,3 @@ class Bitset {
 	
 }
 
-let bit_set = new Bitset(65);
-bit_set.set(5);
-bit_set.reset(67);
-
-console.log (bit_set.array[0]);
-
