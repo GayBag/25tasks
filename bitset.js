@@ -23,8 +23,12 @@ class Bitset {
 	
 	reset (bit)
         {
-                 let i = Math.floor(bit/32);
-                 this.array[i] ^= (1 << bit);
+                let i = Math.floor(bit/32);
+                if (this.array[i]<<bit&1)
+		{
+		this.array[i] ^= (1 << bit);
+		}
+				
 	}
 
 	
