@@ -17,8 +17,12 @@ class Bitset {
 
 	set (bit)
 	{
+		if (bit > (this.array.length*this.size) || bit < 0)
+		{
+			throw "Out of range ";
+		}
 		 let i = Math.floor(bit/32);
-		 this.array[i] ^= (1 << bit);
+		 this.array[i] |= (1 << bit%32);
 	}
 	
 	reset (bit)
@@ -26,7 +30,7 @@ class Bitset {
                 let i = Math.floor(bit/32);
                 if (this.array[i]<<bit&1)
 		{
-		this.array[i] ^= (1 << bit);
+		this.array[i] ^= (1 << bit%32);
 		}
 				
 	}
