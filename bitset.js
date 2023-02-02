@@ -6,7 +6,7 @@ class Bitset {
 		this.array = [];
 		if (this.size%32)
 		{
-			this.array.length = Math.floor(this.size/32)+1;
+			this.array.length = Math.ceil(this.size/32);
 		}
 		else
 		{
