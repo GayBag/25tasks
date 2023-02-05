@@ -4,35 +4,25 @@ class Bitset {
 	{
 		this.size = size;
 		this.array = [];
-		if (this.size%32)
-		{
-			this.array.length = Math.ceil(this.size/32);
-		}
-		else
-		{
-			this.array.length = this.size/32;
-		}
+		this.unit = 32;
+		this.index;
+		if (this.size%this.unit){this.array.length = Math.ceil(this.size/this.unit);}
+		this.array.length = this.size/this.unit;
 		this.array.fill(0,0,this.array.length);
 	}
-
-	set (bit)
-	{
-		if (bit > (this.array.length*this.size) || bit < 0)
-		{
-			throw "Out of range ";
-		}
-		 let i = Math.floor(bit/32);
-		 this.array[i] |= (1 << bit%32);
+	set (pos)
+	{	
+		if (pos < 0) {throw "Give positive number"}
+		if (pos > this.size) {throw "Out of range"} 
+		this.index = Math.floor(pos/this.unit);
+		this.array[this.index] |= (1 << pos % this.unit);
 	}
-	
-	reset (bit)
-        {
-                let i = Math.floor(bit/32);
-                if (this.array[i]<<bit&1)
-		{
-		this.array[i] ^= (1 << bit%32);
-		}
-				
+	reset (pos)
+        {		
+		if (pos < 0) {throw "Give positive number"}
+		if (pos > this.size) {throw "Out of range"} 
+            	this.index = Math.floor(pos/this.unit);
+            	this.array[this.index] &= ~((1 << pos % this.unit));
 	}
 
 	
